@@ -58,19 +58,24 @@
         (chain (OS.removeByIdx $xs (- $index 1)) $res
         (eval (if-error $res $res (ConsOS $x $res))))))
 
+
 ;; Check if an Exemplar is a member of an ordered set
+;; Uses Petta's built-in is-member function for optimal performance
 ;; Params:
 ;;   $exemplar: Exemplar to check
-;;   $os: Ordered set (OS Exemplar)
+;;   $os: Ordered set (OS Exemplar)  
 ;; Returns:
 ;;   Bool - True if $exemplar is in $os, False otherwise
+;; Implementation:
+;;   Converts the ordered set to a native Petta expression,
+;;   then uses the built-in is-member function for efficient lookup
 ;; (: OS.isMember (-> (Exemplar $a) (OS (Exemplar $a)) Bool))
-(= (OS.isMember $exemplar NilOS) False)
-(= (OS.isMember $exemplar (ConsOS $x $xs))
-   (if (== $exemplar $x)
-       True
-       (OS.isMember $exemplar $xs)))
-  
+(= (OS.isMember $exemplar $os) 
+   (let $expression (osToExpression $os ())    ; Convert OS to native expression
+     (is-member $exemplar $expression)         ; Use Petta's optimized built-in
+   )
+)
+
 ; Retrieves the first N elements from an ordered set.
 ; Params:
 ;   $n: Number of elements to return.
