@@ -16,10 +16,15 @@
                     ;;($_ (println! (updatePenalizedScore: $res)))
                     )
                     $res)))) 
-             ;; Boolean version - uses scoreTree
+;; Boolean version - uses scoreTree
 (= (getCscore $itable $tree $complexityRatio $scoreSpace)
    (getCscore $tree $complexityRatio (scoreTree $itable $tree)))
-;; Strategy version - uses scoreStrategyTree with caching
+
+;; Strategy version - uses mixed-opponent scoreStrategyTree with caching
+(= (getCscore $tree $nGames $complexityRatio $scoreSpace)
+   (getCscore $tree $complexityRatio (scoreStrategyTree $tree $nGames $scoreSpace)))
+
+;; Backward-compatible single-opponent strategy version.
 (= (getCscore $tree $nGames $opponentPolicy $complexityRatio $scoreSpace)
    (getCscore $tree $complexityRatio (scoreStrategyTree $tree $nGames $opponentPolicy $scoreSpace)))
 

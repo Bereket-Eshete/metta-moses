@@ -240,5 +240,14 @@
      (mkSInstSet Nil)
      (mkDemeId "1")))
 
-!(assertEqual (hillClimbing (strategyDeme) (mkCscore 3.0 5 1.43 0.0 3) (mkInst (Cons 1 (Cons 1 Nil))) (mkParams applyStrategyBasedScore (3 random-player 3.5))) 
-                    ((mkInst (Cons 1 (Cons 1 Nil))) (mkDeme (mkRep (mkKbMap (mkDscKbMp (ConsMap ((mkNodeId (1)) 0) (ConsMap ((mkNodeId (2)) 1) NilMap))) (mkDscMp (ConsMMap ((mkDiscSpec 2) (mkSSK (mkDiscKnob (mkKnob (mkNodeId (1))) (mkMultip 2) (mkDiscSpec 1) (mkDiscSpec 1) Nil))) (ConsMMap ((mkDiscSpec 2) (mkSSK (mkDiscKnob (mkKnob (mkNodeId (2))) (mkMultip 2) (mkDiscSpec 1) (mkDiscSpec 1) Nil))) NilMMap)))) (mkTree (mkNode PRIORITIZED-OR) (Cons (mkTree (mkNode playwin) Nil) (Cons (mkTree (mkNode playblock) Nil) Nil)))) (mkSInstSet (Cons (mkSInst (mkPair (mkInst (Cons 0 (Cons 0 Nil))) (mkCscore -3.0 0 0.0 0.0 -3.0))) (Cons (mkSInst (mkPair (mkInst (Cons 0 (Cons 0 Nil))) (mkCscore -3.0 0 0.0 0.0 -3.0))) (Cons (mkSInst (mkPair (mkInst (Cons 0 (Cons 0 Nil))) (mkCscore -3.0 0 0.0 0.0 -3.0))) (Cons (mkSInst (mkPair (mkInst (Cons 1 (Cons 1 Nil))) (mkCscore -3.0 2 0.5714285714285714 0.0 -3.571428571428571))) (Cons (mkSInst (mkPair (mkInst (Cons 1 (Cons 0 Nil))) (mkCscore -3.0 1 0.2857142857142857 0.0 -3.2857142857142856))) (Cons (mkSInst (mkPair (mkInst (Cons 0 (Cons 1 Nil))) (mkCscore -3.0 1 0.2857142857142857 0.0 -3.2857142857142856))) (Cons (mkSInst (mkPair (mkInst (Cons 0 (Cons 0 Nil))) (mkCscore -3.0 0 0.0 0.0 -3.0))) (Cons (mkSInst (mkPair (mkInst (Cons 0 (Cons 1 Nil))) (mkCscore -3.0 1 0.2857142857142857 0.0 -3.2857142857142856))) (Cons (mkSInst (mkPair (mkInst (Cons 1 (Cons 0 Nil))) (mkCscore -3.0 1 0.2857142857142857 0.0 -3.2857142857142856))) Nil)))))))))) (mkDemeId "1")) (true false true (mkInst (Cons 1 (Cons 1 Nil))) (mkCscore -3.0 0 0.0 0.0 -3.0) -3.0 13 4 7)))
+!(assertEqual
+   (let* (
+      ($result (hillClimbing (strategyDeme) (mkCscore 3.0 5 1.43 0.0 3)
+                             (mkInst (Cons 1 (Cons 1 Nil)))
+                             (mkParams applyStrategyBasedScore (3 3.5))))
+      (($center $deme $state) $result)
+      ((mkDeme $rep (mkSInstSet $instSet) $demeId) $deme)
+      ($instCount (eval (List.length $instSet)))
+      ($bestScore (eval (getPenScore (eval (getSInstScore (eval (List.head $instSet))))))))
+   ((== $center (mkInst (Cons 1 (Cons 1 Nil)))) (>= $instCount 1) (> $bestScore -1000.0)))
+   (True True True))

@@ -1,13 +1,15 @@
 ;; Recursively optimizes each deme in a list using the provided optimizer function.
 ;; Params:
 ;;   (List Deme): The list of demes to optimize.
-;;   $context: The scoring context - either TruthTableBScore or tuple ($nGames $opponentPolicy)
+;;   $context: The scoring context - either TruthTableBScore or a strategy tuple.
 ;;   $inst: The initial instance for optimization.
 ;;   $optimize: The optimizer function to apply to each deme.
 ;;  Returns: (List Deme): A new list where each deme has been optimized.
 ; (: optimizeDemes (-> (List Deme) $context Instance $optimize (Instance Deme $state)))
-;; Game strategy version - unpacks tuple with target score
-;; Strategy version - unpacks game parameters and calls hillClimbing with mkParams
+;; Default strategy version - uses mixed-opponent scoring.
+(= (optimizeDemes $deme ($nGames $complexityRatio $targetCScore) $inst $optimize)
+   (eval ($optimize $deme $targetCScore $inst (mkParams applyStrategyBasedScore ($nGames $complexityRatio)))))
+;; Legacy strategy version - unpacks explicit opponent score tuple.
 (= (optimizeDemes $deme ($nGames $opponentPolicy $complexityRatio $targetCScore) $inst $optimize)
    (eval ($optimize $deme $targetCScore $inst (mkParams applyStrategyBasedScore ($nGames $opponentPolicy $complexityRatio)))))
 ;; Boolean version - passes context as-is
@@ -52,7 +54,19 @@
     (map-atom $demes $deme (expandDemeHelper $deme $truthTableBScore $optimize))
    ))
 
-;; Overloaded version for game strategy domain - 8 parameters
+;; Overloaded version for game strategy domain using the default mixed-opponent scoring.
+(= (expandDeme $metaPop $nExpansion $nDeme $nGames $complexityRatio $targetCScore $optimize)
+   (let*
+      (
+         ($exemplar (trace! "Selecting Exemplar" (eval (selectExemplar $metaPop))))
+         ($tree (trace! "getting exemplar tree" (eval (getExemplarTree $exemplar))))
+         ($demeIds (trace! "creating deme IDs" (eval (createDemeIds $nExpansion $nDeme))))
+         ($demes (trace! "Creating Deme" (eval (createDeme $nDeme $demeIds $tree))))
+         ($gameContext ($nGames $complexityRatio $targetCScore))
+      )
+      (map-atom $demes $deme (expandDemeHelper $deme $gameContext $optimize))))
+
+;; Legacy overloaded version for explicit-opponent strategy scoring.
 (= (expandDeme $metaPop $nExpansion $nDeme $nGames $opponentPolicy $complexityRatio $targetCScore $optimize)
    (let*
       (
@@ -99,9 +113,11 @@ $optimDeme
      (
        ($optimizedDemes (case $context
                         ((($prune-exemplar $fs-algo $truthTableBScore $itable) (trace! "expand  deme returnn" (eval (expandDeme $metaPop $nExpansion $nDeme $prune-exemplar $fs-algo $truthTableBScore $optimize $itable mi))))
+                        (($nGames $complexityRatio) (trace! "expand deme return" (eval (expandDeme $metaPop $nExpansion $nDeme $nGames $complexityRatio $maxScore $optimize))))
                         (($nGames $opponentPolicy $complexityRatio) (trace! "expand deme return" (eval (expandDeme $metaPop $nExpansion $nDeme $nGames $opponentPolicy $complexityRatio $maxScore $optimize)))))))
        ($updatedMetaPop (case $context 
                         ((($prune-exemplar $fs-algo $truthTableBScore $itable) (trace! "Merging Deme" (eval (mergeDemes $optimizedDemes $nEval $maxCandsPerDeme $minPoolSize $complexityTemperature $itable $metaPop $nToKeep $capCoef $genCount))))
+                        (($nGames $complexityRatio) (trace! "Merging Deme" (eval (mergeDemes $optimizedDemes $nEval $maxCandsPerDeme $minPoolSize $complexityTemperature $nGames $metaPop $nToKeep $capCoef $genCount))))
                         (($nGames $opponentPolicy $complexityRatio) (trace! "Merging Deme" (eval (mergeDemes $optimizedDemes $nEval $maxCandsPerDeme $minPoolSize $complexityTemperature ($nGames $opponentPolicy) $metaPop $nToKeep $capCoef $genCount)))))))
        ($_ (println! (Updated MetaPop: $updatedMetaPop)))
        ($top (eval (OS.getByIdx 0 $metaPop)))

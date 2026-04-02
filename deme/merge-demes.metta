@@ -102,6 +102,7 @@
         ($_ (println! (scoreTree Starting...)))
         ($bscore (case $scoringContext
                     (((mkITable $rows $labels) (eval (scoreTree $scoringContext $tree)))
+                     ($nGames (eval (scoreStrategyTree $tree $nGames &strategyScoreCache)))
                      (($nGames $opponentPolicy) (eval (scoreStrategyTree $tree $nGames $opponentPolicy &strategyScoreCache))))))
         ($scoredTree (mkExemplar $tree $demeId $cscore $bscore))
     )

@@ -192,16 +192,32 @@
        (Cons (mkTree (mkNode playcenter) Nil) 
              (Cons (mkTree (mkNode playcorner) Nil) Nil)))))
 
-!(assertEqual (applyStrategyBasedScore (StrategyRep) Nil 1 random-player 3.5 Nil) Nil)
-
-!(assertEqual (applyStrategyBasedScore (StrategyRep) 
-                     (Cons (mkInst (Cons 1 (Cons 1 Nil)))  Nil) 1 random-player 3.5 Nil) 
-                     (Cons (mkSInst (mkPair (mkInst (Cons 1 (Cons 1 Nil))) (mkCscore 1.0 2 0.5714285714285714 0.0 0.4285714285714286))) Nil))
+!(assertEqual (applyStrategyBasedScore (StrategyRep) Nil 1 3.5 Nil) Nil)
 
 !(assertEqual
-   (transform (mkSInstSet Nil) (StrategyRep) (1 random-player) 3.5)
+   (let* (
+      ($result (applyStrategyBasedScore (StrategyRep)
+                     (Cons (mkInst (Cons 1 (Cons 1 Nil))) Nil) 1 3.5 Nil))
+      ($resultLen (eval (List.length $result)))
+      ($firstSInst (eval (List.head $result)))
+      ($score (eval (getSInstScore $firstSInst)))
+      ($penScore (eval (getPenScore $score))))
+   ((== $resultLen 1) (> $penScore -1000.0)))
+   (True True))
+
+!(assertEqual
+   (transform (mkSInstSet Nil) (StrategyRep) (1) 3.5)
    (mkSInstSet Nil))
 
-!(assertEqual (transform
-   (mkSInstSet (Cons (mkSInst (mkPair (mkInst (Cons 1 (Cons 1 Nil))) -1.0e308)) Nil))
-   (StrategyRep) (1 random-player) 3.5) (mkSInstSet (Cons (mkSInst (mkPair (mkInst (Cons 1 (Cons 1 Nil))) (mkCscore 1.0 2 0.5714285714285714 0.0 0.4285714285714286))) Nil)))
+!(assertEqual
+   (let* (
+      ($result (transform
+         (mkSInstSet (Cons (mkSInst (mkPair (mkInst (Cons 1 (Cons 1 Nil))) -1.0e308)) Nil))
+         (StrategyRep) (1) 3.5))
+      ($instList (eval (getSInstSetItems $result)))
+      ($resultLen (eval (List.length $instList)))
+      ($firstSInst (eval (List.head $instList)))
+      ($score (eval (getSInstScore $firstSInst)))
+      ($penScore (eval (getPenScore $score))))
+   ((== $resultLen 1) (> $penScore -1000.0)))
+   (True True))

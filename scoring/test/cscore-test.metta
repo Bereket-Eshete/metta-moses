@@ -119,5 +119,6 @@
       (Cons (mkTree (mkNode playcenter) Nil)
             (Cons (mkTree (mkNode playside) Nil)
                   (Cons (mkTree (mkNode playcorner) Nil) Nil)))))
+
 !(assertEqual (getCscore (Strategy) 5 minimax-player 3.5 &strategyScoreCache) 
               (mkCscore 0.0 3 0.8571428571428571 0.0 -0.8571428571428571))

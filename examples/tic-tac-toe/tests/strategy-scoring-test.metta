@@ -9,6 +9,9 @@
 !(assertEqual (score-result X O) -1.0)
 !(assertEqual (score-result Draw X) 0.0)
 
+!(assertEqual (split-opponent-games 10) (5 5))
+!(assertEqual (split-opponent-games 9) (4 5))
+
 !(assertEqual (evaluate-strategy 5 X random-player minimax-player)
               (Cons -1.0 (Cons -1.0 (Cons -1.0 (Cons -1.0 (Cons -1.0 Nil))))))
 
@@ -26,3 +29,9 @@
 
 !(assertEqual (score-strategy 3 minimax-player minimax-player) 
               (mkBScore (Cons 0.0 (Cons 0.0 (Cons 0.0 Nil)))))
+
+!(assertEqual (evaluate-strategy 5 X minimax-player)
+              (Cons 1.0 (Cons 1.0 (Cons 0.0 (Cons 0.0 (Cons 0.0 Nil))))))
+
+!(assertEqual (score-strategy 5 minimax-player)
+              (mkBScore (Cons 1.0 (Cons 1.0 (Cons 0.0 (Cons 0.0 (Cons 0.0 Nil)))))))

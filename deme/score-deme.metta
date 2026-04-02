@@ -19,16 +19,33 @@
 )
 (applyComplexityBasedScore $rep $is $itable $complexityRatio $uListofScoredInst)))
 
-;; Strategy-based scoring helper for game strategies 
+;; Strategy-based scoring helper for game strategies using the default
+;; mixed-opponent evaluation pipeline.
 ;; Params:
 ;;   $rep: The representation object
 ;;   $instList: List of instances to score
 ;;   $nGames: Number of games to play
-;;   $opponentPolicy: Opponent strategy
 ;;   $complexityRatio: Complexity penalty ratio
 ;;   $listOfScoredInst: Accumulator for scored instances
 ;; Returns:
 ;;   List of scored instances with CScore
+; (: applyStrategyBasedScore (-> Representation (List Instance) Number Number (List (ScoredInstance CScore)) (List (ScoredInstance CScore))))
+(= (applyStrategyBasedScore $rep Nil $nGames $complexityRatio $listOfScoredInst) $listOfScoredInst)
+(= (applyStrategyBasedScore $rep (Cons $i $is) $nGames $complexityRatio $listOfScoredInst)
+(let*
+(
+    ($strategyTree (eval (getCandidate $rep $i)))
+    ($_ (println! "[applyStrategyBasedScore] Got tree:"))
+    ($_ (println! $strategyTree))
+    ($cscore (eval (getCscore $strategyTree $nGames $complexityRatio &strategyScoreCache)))
+    ($_ (println! "[applyStrategyBasedScore] Got cscore:"))
+    ($_ (println! $cscore))
+    ($scoredInst (mkSInst (mkPair $i $cscore)))
+    ($uListofScoredInst (Cons $scoredInst $listOfScoredInst))
+)
+(applyStrategyBasedScore $rep $is $nGames $complexityRatio $uListofScoredInst)))
+
+;; Backward-compatible single-opponent strategy scoring helper.
 ; (: applyStrategyBasedScore (-> Representation (List Instance) Number $opponentPolicy Number (List (ScoredInstance CScore)) (List (ScoredInstance CScore))))
 (= (applyStrategyBasedScore $rep Nil $nGames $opponentPolicy $complexityRatio $listOfScoredInst) $listOfScoredInst)
 (= (applyStrategyBasedScore $rep (Cons $i $is) $nGames $opponentPolicy $complexityRatio $listOfScoredInst)
@@ -60,6 +77,8 @@
     ($scored (case $scoringContext
       (((mkITable $rows $labels) 
         (applyComplexityBasedScore $rep $instList $scoringContext $complexityRatio Nil))
+       ($nGames
+        (applyStrategyBasedScore $rep $instList $nGames $complexityRatio Nil))
        (($nGames $opponentPolicy)
         (applyStrategyBasedScore $rep $instList $nGames $opponentPolicy $complexityRatio Nil)))))
   )

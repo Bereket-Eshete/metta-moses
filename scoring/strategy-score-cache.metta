@@ -6,9 +6,25 @@
 ;; Params:
 ;;   $tree: Strategy tree to score
 ;;   $nGames: Number of games to play
-;;   $opponentPolicy: Opponent strategy function
 ;;   $scoreSpace: Cache space for storing results
 ;; Returns: BScore
+;; Cache key: ($cleanStrategy $nGames $bscore)
+(= (scoreStrategyTree $tree $nGames $scoreSpace)
+    (let* (
+        ($cleanStrategy (eval (preOrder $tree)))
+        ($cached (collapse (match $scoreSpace ($cleanStrategy $nGames $bscore) $bscore)))
+    )
+    (if (== $cached ())
+        ;; Cache miss - compute and store
+        (let* (
+            ($bscore (eval (score-strategy $nGames $cleanStrategy)))
+            ($_ (add-atom $scoreSpace ($cleanStrategy $nGames $bscore)))
+        )
+        $bscore)
+        ;; Cache hit - return cached value
+        (car-atom $cached))))
+
+;; Backward-compatible single-opponent cache entry.
 ;; Cache key: ($cleanStrategy $nGames $opponentPolicy $bscore)
 (= (scoreStrategyTree $tree $nGames $opponentPolicy $scoreSpace)
     (let* (

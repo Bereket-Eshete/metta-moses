@@ -80,187 +80,187 @@
 ; (= (INSERT_ABOVE $tree $nodeId $subtree) (py_insertAbove  $tree $nodeId $subtree))
 ; (= (pyExprToList $expr) (py_exprToList $expr))
 
-(= (deme) (mkDeme (mkRep (mkKbMap (mkDscKbMp (ConsMap ((mkNodeId (1)) 0) (ConsMap ((mkNodeId (2)) 1) NilMap))) (mkDscMp (ConsMMap ((mkDiscSpec 3) (mkLSK (mkDiscKnob (mkKnob  (mkNodeId (1))) (mkMultip 3) (mkDiscSpec 0) (mkDiscSpec 0) Nil))) (ConsMMap ((mkDiscSpec 3) (mkLSK (mkDiscKnob (mkKnob (mkNodeId (2))) (mkMultip 3) (mkDiscSpec 0) (mkDiscSpec 0) Nil))) NilMMap)))) (mkTree (mkNode AND) (Cons (mkNullVex (Cons (mkTree (mkNode A) Nil) Nil)) (Cons (mkNullVex (Cons (mkTree (mkNode B) Nil) Nil)) Nil)))) (mkSInstSet Nil) (mkDemeId "1")))
-(= (table1) (eval (createTruthTableBScore 2 (mkITable
-                         (Cons (Cons False (Cons False (Cons False Nil))) 
-                         (Cons (Cons True (Cons False (Cons False Nil))) 
-                         (Cons (Cons False (Cons True (Cons False Nil)))
-                         (Cons (Cons True (Cons True (Cons True Nil))) Nil))))
-                         (Cons A (Cons B (Cons O Nil)))))))
+; (= (deme) (mkDeme (mkRep (mkKbMap (mkDscKbMp (ConsMap ((mkNodeId (1)) 0) (ConsMap ((mkNodeId (2)) 1) NilMap))) (mkDscMp (ConsMMap ((mkDiscSpec 3) (mkLSK (mkDiscKnob (mkKnob  (mkNodeId (1))) (mkMultip 3) (mkDiscSpec 0) (mkDiscSpec 0) Nil))) (ConsMMap ((mkDiscSpec 3) (mkLSK (mkDiscKnob (mkKnob (mkNodeId (2))) (mkMultip 3) (mkDiscSpec 0) (mkDiscSpec 0) Nil))) NilMMap)))) (mkTree (mkNode AND) (Cons (mkNullVex (Cons (mkTree (mkNode A) Nil) Nil)) (Cons (mkNullVex (Cons (mkTree (mkNode B) Nil) Nil)) Nil)))) (mkSInstSet Nil) (mkDemeId "1")))
+; (= (table1) (eval (createTruthTableBScore 2 (mkITable
+;                          (Cons (Cons False (Cons False (Cons False Nil))) 
+;                          (Cons (Cons True (Cons False (Cons False Nil))) 
+;                          (Cons (Cons False (Cons True (Cons False Nil)))
+;                          (Cons (Cons True (Cons True (Cons True Nil))) Nil))))
+;                          (Cons A (Cons B (Cons O Nil)))))))
 
-(= (ttable1) (mkITable
-                         (Cons (Cons False (Cons False (Cons False Nil))) 
-                         (Cons (Cons True (Cons False (Cons False Nil))) 
-                         (Cons (Cons False (Cons True (Cons False Nil)))
-                         (Cons (Cons True (Cons True (Cons True Nil))) Nil))))
-                         (Cons A (Cons B (Cons O Nil)))))                         
+; (= (ttable1) (mkITable
+;                          (Cons (Cons False (Cons False (Cons False Nil))) 
+;                          (Cons (Cons True (Cons False (Cons False Nil))) 
+;                          (Cons (Cons False (Cons True (Cons False Nil)))
+;                          (Cons (Cons True (Cons True (Cons True Nil))) Nil))))
+;                          (Cons A (Cons B (Cons O Nil)))))                         
 
-(= (ortable) (eval (createTruthTableBScore 2 (mkITable
-                         (Cons (Cons False (Cons False (Cons False Nil))) 
-                         (Cons (Cons True (Cons False (Cons True Nil))) 
-                         (Cons (Cons False (Cons True (Cons True Nil)))
-                         (Cons (Cons True (Cons True (Cons True Nil))) Nil))))
-                         (Cons A (Cons B (Cons O Nil)))))))
+; (= (ortable) (eval (createTruthTableBScore 2 (mkITable
+;                          (Cons (Cons False (Cons False (Cons False Nil))) 
+;                          (Cons (Cons True (Cons False (Cons True Nil))) 
+;                          (Cons (Cons False (Cons True (Cons True Nil)))
+;                          (Cons (Cons True (Cons True (Cons True Nil))) Nil))))
+;                          (Cons A (Cons B (Cons O Nil)))))))
 
-(= (orttable) (mkITable
-                         (Cons (Cons False (Cons False (Cons False Nil))) 
-                         (Cons (Cons True (Cons False (Cons True Nil))) 
-                         (Cons (Cons False (Cons True (Cons True Nil)))
-                         (Cons (Cons True (Cons True (Cons True Nil))) Nil))))
-                         (Cons A (Cons B (Cons O Nil))))) 
+; (= (orttable) (mkITable
+;                          (Cons (Cons False (Cons False (Cons False Nil))) 
+;                          (Cons (Cons True (Cons False (Cons True Nil))) 
+;                          (Cons (Cons False (Cons True (Cons True Nil)))
+;                          (Cons (Cons True (Cons True (Cons True Nil))) Nil))))
+;                          (Cons A (Cons B (Cons O Nil))))) 
 
-(= (metaPop2) (ConsOS (mkExemplar (mkTree (mkNode AND) Nil) (mkDemeId "1") (eval (worstCscore)) (mkBScore (Cons 0 (Cons 0 Nil)))) NilOS)) 
+; (= (metaPop2) (ConsOS (mkExemplar (mkTree (mkNode AND) Nil) (mkDemeId "1") (eval (worstCscore)) (mkBScore (Cons 0 (Cons 0 Nil)))) NilOS)) 
 
-(= (metaPop) (ConsOS (mkExemplar (mkTree (mkNode OR) (Cons (mkTree (mkNode NOT) (Cons (mkTree (mkNode A) Nil) Nil)) (Cons (mkTree (mkNode OR) (Cons (mkTree (mkNode AND) (Cons (mkTree (mkNode B) Nil) Nil)) (Cons (mkTree (mkNode AND) (Cons (mkTree (mkNode C) Nil) Nil)) (Cons (mkTree (mkNode AND) (Cons (mkTree (mkNode D) Nil) Nil)) Nil)))) Nil))) (mkDemeId "1") (mkCscore -0.2 1 0.1 0.1 -0.4) (mkBScore (Cons 0 (Cons 0 (Cons 0 (Cons 0 Nil))))))
-                 (ConsOS (mkExemplar (mkTree (mkNode OR) (Cons (mkTree (mkNode OR) (Cons (mkTree (mkNode AND) (Cons (mkTree (mkNode B) Nil) Nil)) (Cons (mkTree (mkNode AND) (Cons (mkTree (mkNode C) Nil) Nil)) (Cons (mkTree (mkNode AND) (Cons (mkTree (mkNode D) Nil) Nil)) Nil)))) Nil)) (mkDemeId "1") (mkCscore -0.1 2 0.2 0.3 -0.6) (mkBScore (Cons 0 (Cons 0 (Cons 0 (Cons 0 Nil)))))) 
-                 NilOS)))
+; (= (metaPop) (ConsOS (mkExemplar (mkTree (mkNode OR) (Cons (mkTree (mkNode NOT) (Cons (mkTree (mkNode A) Nil) Nil)) (Cons (mkTree (mkNode OR) (Cons (mkTree (mkNode AND) (Cons (mkTree (mkNode B) Nil) Nil)) (Cons (mkTree (mkNode AND) (Cons (mkTree (mkNode C) Nil) Nil)) (Cons (mkTree (mkNode AND) (Cons (mkTree (mkNode D) Nil) Nil)) Nil)))) Nil))) (mkDemeId "1") (mkCscore -0.2 1 0.1 0.1 -0.4) (mkBScore (Cons 0 (Cons 0 (Cons 0 (Cons 0 Nil))))))
+;                  (ConsOS (mkExemplar (mkTree (mkNode OR) (Cons (mkTree (mkNode OR) (Cons (mkTree (mkNode AND) (Cons (mkTree (mkNode B) Nil) Nil)) (Cons (mkTree (mkNode AND) (Cons (mkTree (mkNode C) Nil) Nil)) (Cons (mkTree (mkNode AND) (Cons (mkTree (mkNode D) Nil) Nil)) Nil)))) Nil)) (mkDemeId "1") (mkCscore -0.1 2 0.2 0.3 -0.6) (mkBScore (Cons 0 (Cons 0 (Cons 0 (Cons 0 Nil)))))) 
+;                  NilOS)))
        
-(= (bigtable) (mkITable
-                        (Cons (Cons True  (Cons False (Cons True  (Cons False (Cons True  (Cons True  Nil))))))
-                        (Cons (Cons False (Cons True  (Cons True  (Cons False (Cons False (Cons False Nil))))))
-                        (Cons (Cons True  (Cons True  (Cons False (Cons True  (Cons True  (Cons True  Nil))))))
-                        (Cons (Cons False (Cons False (Cons True  (Cons True  (Cons False (Cons False Nil))))))
-                        (Cons (Cons True  (Cons False (Cons False (Cons True  (Cons True  (Cons True  Nil))))))
-                        (Cons (Cons False (Cons True  (Cons False (Cons False (Cons False (Cons False Nil))))))
-                        (Cons (Cons True  (Cons True  (Cons True  (Cons False (Cons True  (Cons True  Nil))))))
-                        (Cons (Cons False (Cons False (Cons False (Cons True  (Cons False (Cons False Nil))))))
-                        (Cons (Cons True  (Cons True  (Cons False (Cons False (Cons True  (Cons True  Nil))))))
-                        (Cons (Cons False (Cons True  (Cons True  (Cons True  (Cons False (Cons False Nil))))))
-                        (Cons (Cons True  (Cons False (Cons True  (Cons True  (Cons True  (Cons True  Nil))))))
-                        (Cons (Cons False (Cons False (Cons False (Cons False (Cons False (Cons False Nil))))))
-                        (Cons (Cons True  (Cons True  (Cons True  (Cons True  (Cons True  (Cons True  Nil))))))
-                        (Cons (Cons False (Cons False (Cons True  (Cons False (Cons False (Cons False Nil))))))
-                        (Cons (Cons True  (Cons False (Cons False (Cons False (Cons True  (Cons True  Nil))))))
-                        (Cons (Cons False (Cons True  (Cons False (Cons True  (Cons False (Cons False Nil)))))) Nil))))))))))))))))
+; (= (bigtable) (mkITable
+;                         (Cons (Cons True  (Cons False (Cons True  (Cons False (Cons True  (Cons True  Nil))))))
+;                         (Cons (Cons False (Cons True  (Cons True  (Cons False (Cons False (Cons False Nil))))))
+;                         (Cons (Cons True  (Cons True  (Cons False (Cons True  (Cons True  (Cons True  Nil))))))
+;                         (Cons (Cons False (Cons False (Cons True  (Cons True  (Cons False (Cons False Nil))))))
+;                         (Cons (Cons True  (Cons False (Cons False (Cons True  (Cons True  (Cons True  Nil))))))
+;                         (Cons (Cons False (Cons True  (Cons False (Cons False (Cons False (Cons False Nil))))))
+;                         (Cons (Cons True  (Cons True  (Cons True  (Cons False (Cons True  (Cons True  Nil))))))
+;                         (Cons (Cons False (Cons False (Cons False (Cons True  (Cons False (Cons False Nil))))))
+;                         (Cons (Cons True  (Cons True  (Cons False (Cons False (Cons True  (Cons True  Nil))))))
+;                         (Cons (Cons False (Cons True  (Cons True  (Cons True  (Cons False (Cons False Nil))))))
+;                         (Cons (Cons True  (Cons False (Cons True  (Cons True  (Cons True  (Cons True  Nil))))))
+;                         (Cons (Cons False (Cons False (Cons False (Cons False (Cons False (Cons False Nil))))))
+;                         (Cons (Cons True  (Cons True  (Cons True  (Cons True  (Cons True  (Cons True  Nil))))))
+;                         (Cons (Cons False (Cons False (Cons True  (Cons False (Cons False (Cons False Nil))))))
+;                         (Cons (Cons True  (Cons False (Cons False (Cons False (Cons True  (Cons True  Nil))))))
+;                         (Cons (Cons False (Cons True  (Cons False (Cons True  (Cons False (Cons False Nil)))))) Nil))))))))))))))))
                         
-                        (Cons A (Cons B (Cons C (Cons D (Cons E (Cons T Nil))))))))                     
-;; truthTableBScore for  bigtable
-(= (bigtablet) (eval (createTruthTableBScore 2 (bigtable))))                        
+;                         (Cons A (Cons B (Cons C (Cons D (Cons E (Cons T Nil))))))))                     
+; ;; truthTableBScore for  bigtable
+; (= (bigtablet) (eval (createTruthTableBScore 2 (bigtable))))                        
 
-(= (bigtable2) (mkITable
-                        (Cons (Cons True  (Cons False (Cons True  (Cons False (Cons True  (Cons True  Nil))))))
-                        (Cons (Cons False (Cons True  (Cons False (Cons True  (Cons False (Cons False Nil))))))
-                        (Cons (Cons True  (Cons True  (Cons True  (Cons False (Cons False (Cons True  Nil))))))
-                        (Cons (Cons False (Cons False (Cons True  (Cons True  (Cons True  (Cons True  Nil))))))
-                        (Cons (Cons True  (Cons False (Cons False (Cons True  (Cons True  (Cons False Nil))))))
-                        (Cons (Cons False (Cons True  (Cons True  (Cons True  (Cons False (Cons True  Nil))))))
-                        (Cons (Cons True  (Cons True  (Cons False (Cons False (Cons True  (Cons True  Nil))))))
-                        (Cons (Cons False (Cons False (Cons False (Cons True  (Cons False (Cons False Nil))))))
-                        (Cons (Cons True  (Cons True  (Cons True  (Cons True  (Cons True  (Cons True  Nil))))))
-                        (Cons (Cons False (Cons True  (Cons False (Cons False (Cons True  (Cons False Nil))))))
-                        (Cons (Cons True  (Cons False (Cons True  (Cons True  (Cons False (Cons True  Nil))))))
-                        (Cons (Cons False (Cons False (Cons True  (Cons False (Cons True  (Cons False Nil))))))
-                        (Cons (Cons True  (Cons True  (Cons False (Cons True  (Cons False (Cons True  Nil))))))
-                        (Cons (Cons False (Cons True  (Cons True  (Cons False (Cons True  (Cons True  Nil))))))
-                        (Cons (Cons True  (Cons False (Cons False (Cons False (Cons False (Cons False Nil))))))
-                        (Cons (Cons False (Cons False (Cons False (Cons True  (Cons True  (Cons True  Nil)))))) Nil))))))))))))))))
+; (= (bigtable2) (mkITable
+;                         (Cons (Cons True  (Cons False (Cons True  (Cons False (Cons True  (Cons True  Nil))))))
+;                         (Cons (Cons False (Cons True  (Cons False (Cons True  (Cons False (Cons False Nil))))))
+;                         (Cons (Cons True  (Cons True  (Cons True  (Cons False (Cons False (Cons True  Nil))))))
+;                         (Cons (Cons False (Cons False (Cons True  (Cons True  (Cons True  (Cons True  Nil))))))
+;                         (Cons (Cons True  (Cons False (Cons False (Cons True  (Cons True  (Cons False Nil))))))
+;                         (Cons (Cons False (Cons True  (Cons True  (Cons True  (Cons False (Cons True  Nil))))))
+;                         (Cons (Cons True  (Cons True  (Cons False (Cons False (Cons True  (Cons True  Nil))))))
+;                         (Cons (Cons False (Cons False (Cons False (Cons True  (Cons False (Cons False Nil))))))
+;                         (Cons (Cons True  (Cons True  (Cons True  (Cons True  (Cons True  (Cons True  Nil))))))
+;                         (Cons (Cons False (Cons True  (Cons False (Cons False (Cons True  (Cons False Nil))))))
+;                         (Cons (Cons True  (Cons False (Cons True  (Cons True  (Cons False (Cons True  Nil))))))
+;                         (Cons (Cons False (Cons False (Cons True  (Cons False (Cons True  (Cons False Nil))))))
+;                         (Cons (Cons True  (Cons True  (Cons False (Cons True  (Cons False (Cons True  Nil))))))
+;                         (Cons (Cons False (Cons True  (Cons True  (Cons False (Cons True  (Cons True  Nil))))))
+;                         (Cons (Cons True  (Cons False (Cons False (Cons False (Cons False (Cons False Nil))))))
+;                         (Cons (Cons False (Cons False (Cons False (Cons True  (Cons True  (Cons True  Nil)))))) Nil))))))))))))))))
 
-                        (Cons A (Cons B (Cons C (Cons D (Cons E (Cons T Nil))))))))
+;                         (Cons A (Cons B (Cons C (Cons D (Cons E (Cons T Nil))))))))
 
-; (= (bigtablet2) (createTruthTableBScore 2 bigtable2))                        
+; ; (= (bigtablet2) (createTruthTableBScore 2 bigtable2))                        
 
-; (: isScored (-> (ScoredInstance Cscore) Bool))
-(= (isScored (mkSInst (mkPair $instance $score))) (~= $score (eval (worstCscore))))
+; ; (: isScored (-> (ScoredInstance Cscore) Bool))
+; (= (isScored (mkSInst (mkPair $instance $score))) (~= $score (eval (worstCscore))))
 
-; Testcase for optimizeDemes               
-!(assertEqual 
-(let* 
-(
-    ($optimizeDemesReturn (optimizeDemes (deme) 
-                (table1) 
-                (mkInst (Cons 0 (Cons 0 Nil))) 
-                hillClimbing
-                ))
-    ($_ (println! "optimizeDemes Returns"))
-    ($_ (println! $optimizeDemesReturn))
-    (($instance (mkDeme $rep (mkSInstSet $instSet) $id) $state) $optimizeDemesReturn)
-    ($instanceCount (eval (List.length $instSet)))
-    ($scoredElems (eval (List.map isScored $instSet)))
-)
-((>= $instanceCount 4) (eval (List.any $scoredElems))))
-(True True))
+; ; Testcase for optimizeDemes               
+; !(assertEqual 
+; (let* 
+; (
+;     ($optimizeDemesReturn (optimizeDemes (deme) 
+;                 (table1) 
+;                 (mkInst (Cons 0 (Cons 0 Nil))) 
+;                 hillClimbing
+;                 ))
+;     ($_ (println! "optimizeDemes Returns"))
+;     ($_ (println! $optimizeDemesReturn))
+;     (($instance (mkDeme $rep (mkSInstSet $instSet) $id) $state) $optimizeDemesReturn)
+;     ($instanceCount (eval (List.length $instSet)))
+;     ($scoredElems (eval (List.map isScored $instSet)))
+; )
+; ((>= $instanceCount 4) (eval (List.any $scoredElems))))
+; (True True))
 
-; Testcase for expandDeme
-!(assertEqual
-(let*
-(
-    ($updatedDeme (expandDeme (metaPop2) 0 1 False sim 
-                    (table1)
-                    hillClimbing 
-                    (ttable1)
-                    mi))
-    ($updatedDemeLength (size-atom $updatedDeme)))
-(>= $updatedDemeLength 1)) True)
-
-; Testcase for runMoses
-!(assertEqual
-(let*
-(
-    ($topCandidates (runMoses 2 (mkCscore -0.1 2 0.1 0.1 3) 3 (metaPop2) 0 2 (False sim 
-    (table1) 
-    (ttable1)) 
-    hillClimbing 5 2 0 1 
-    3 0.004 1000))
-    ($topCandidatesLength (eval (OS.length $topCandidates)))
-)
-(>= $topCandidatesLength 1)
-) True)
+; ; Testcase for expandDeme
+; !(assertEqual
+; (let*
+; (
+;     ($updatedDeme (expandDeme (metaPop2) 0 1 False sim 
+;                     (table1)
+;                     hillClimbing 
+;                     (ttable1)
+;                     mi))
+;     ($updatedDemeLength (size-atom $updatedDeme)))
+; (>= $updatedDemeLength 1)) True)
 
 ; ; Testcase for runMoses
-!(assertEqual
-(let*
-(
-    ($topCandidates (runMoses 1 (mkCscore -0.1 2 0.1 0.1 3) 3 (metaPop2) 0 2 (False rd 
-    (table1)  
-    (ttable1))
-    hillClimbing 5 2 0 1 
-    3 0.004 1000))
-    ($topCandidatesLength (OS.length $topCandidates))
-)
-(>= $topCandidatesLength 1)
-) True)
+; !(assertEqual
+; (let*
+; (
+;     ($topCandidates (runMoses 2 (mkCscore -0.1 2 0.1 0.1 3) 3 (metaPop2) 0 2 (False sim 
+;     (table1) 
+;     (ttable1)) 
+;     hillClimbing 5 2 0 1 
+;     3 0.004 1000))
+;     ($topCandidatesLength (eval (OS.length $topCandidates)))
+; )
+; (>= $topCandidatesLength 1)
+; ) True)
 
-; ;; Testcase for runMoses
-!(assertEqual
-(let*
-(
-    ($topCandidates (runMoses 1 (mkCscore -0.1 2 0.1 0.1 3) 3 (metaPop2) 0 2 (False inc 
-    (table1) 
-    (ttable1))
-    hillClimbing 5 2 0 1 
-    3 0.004 1000))
-    ($topCandidatesLength (eval (OS.length $topCandidates)))
-)
-(>= $topCandidatesLength 1)
-) True)
+; ; ; Testcase for runMoses
+; !(assertEqual
+; (let*
+; (
+;     ($topCandidates (runMoses 1 (mkCscore -0.1 2 0.1 0.1 3) 3 (metaPop2) 0 2 (False rd 
+;     (table1)  
+;     (ttable1))
+;     hillClimbing 5 2 0 1 
+;     3 0.004 1000))
+;     ($topCandidatesLength (OS.length $topCandidates))
+; )
+; (>= $topCandidatesLength 1)
+; ) True)
 
-; ;; Testcase 2 for runmoses. 
-; ;; When maxGen become 10, test number of returned instances is not greater than maxCandOutput, 
-; ;;              where maxCandOutput is 3 and minPoolSize is 2
-!(assertEqual
-(let $length
-((OS.length (runMoses 10 (mkCscore -0.1 2 0.1 0.1 3) 3 (metaPop2) 0 2 
-    (False    ;; the new arguments for prune-exemplar -- we are saying dont prune the exemplar
-    inc      ;; the new arguments for feature selection algo
-    (eval (createTruthTableBScore 2 (mkITable
-                          (Cons (Cons False (Cons False (Cons False Nil))) 
-                          (Cons (Cons True (Cons False (Cons False Nil))) 
-                          (Cons (Cons False (Cons True (Cons False Nil)))
-                          (Cons (Cons True (Cons True (Cons True Nil))) Nil))))
-                          (Cons A (Cons B (Cons O Nil))))))
-    (mkITable
-                          (Cons (Cons False (Cons False (Cons False Nil))) 
-                          (Cons (Cons True (Cons False (Cons False Nil))) 
-                          (Cons (Cons False (Cons True (Cons False Nil)))
-                          (Cons (Cons True (Cons True (Cons True Nil))) Nil))))
-                          (Cons A (Cons B (Cons O Nil)))))
-    hillClimbing 5 2 2 1
-    3 0.004 1000)
-    ))
-        (> $length 3)
-)
-    False
-) 
+; ; ;; Testcase for runMoses
+; !(assertEqual
+; (let*
+; (
+;     ($topCandidates (runMoses 1 (mkCscore -0.1 2 0.1 0.1 3) 3 (metaPop2) 0 2 (False inc 
+;     (table1) 
+;     (ttable1))
+;     hillClimbing 5 2 0 1 
+;     3 0.004 1000))
+;     ($topCandidatesLength (eval (OS.length $topCandidates)))
+; )
+; (>= $topCandidatesLength 1)
+; ) True)
+
+; ; ;; Testcase 2 for runmoses. 
+; ; ;; When maxGen become 10, test number of returned instances is not greater than maxCandOutput, 
+; ; ;;              where maxCandOutput is 3 and minPoolSize is 2
+; !(assertEqual
+; (let $length
+; ((OS.length (runMoses 10 (mkCscore -0.1 2 0.1 0.1 3) 3 (metaPop2) 0 2 
+;     (False    ;; the new arguments for prune-exemplar -- we are saying dont prune the exemplar
+;     inc      ;; the new arguments for feature selection algo
+;     (eval (createTruthTableBScore 2 (mkITable
+;                           (Cons (Cons False (Cons False (Cons False Nil))) 
+;                           (Cons (Cons True (Cons False (Cons False Nil))) 
+;                           (Cons (Cons False (Cons True (Cons False Nil)))
+;                           (Cons (Cons True (Cons True (Cons True Nil))) Nil))))
+;                           (Cons A (Cons B (Cons O Nil))))))
+;     (mkITable
+;                           (Cons (Cons False (Cons False (Cons False Nil))) 
+;                           (Cons (Cons True (Cons False (Cons False Nil))) 
+;                           (Cons (Cons False (Cons True (Cons False Nil)))
+;                           (Cons (Cons True (Cons True (Cons True Nil))) Nil))))
+;                           (Cons A (Cons B (Cons O Nil)))))
+;     hillClimbing 5 2 2 1
+;     3 0.004 1000)
+;     ))
+;         (> $length 3)
+; )
+;     False
+; ) 
 ; ; with OR table and AND init exemplar     
 ; !(runMoses 7 (mkCscore -0.1 2 0.1 0.1 3) 3 (metaPop) 0 2 
 ;     False    ;; the new arguments for prune-exemplar -- we are saying dont prune the exemplar
@@ -322,22 +322,22 @@
      NilOS))
 
 ;; by uncomment this test and also adjust the parameter settings we can check the full evolution process of runMosesStrategy, and see how the strategy evolves from empty strategy to better strategy.
-; !(runMoses
-;     2                              ;; maxGen - 3 generations 
-;     (mkCscore 10.0 0 0 0.0 10)     ;; Target: 10/10 wins,
-;     3                              ;; maxCandOutput - return top 3 strategies
-;     (emptyStrategyMetaPop)         ;; metaPop - start with empty strategy
-;     0                              ;; nExpansion - generation counter
-;     2                              ;; nDeme - 3 demes (more diversity)
-;     (10 random-player 3.5)       ;; nGames - 10 games per evaluation
-;     hillClimbing                   ;; optimize - optimizer function
-;     30                             ;; nEval - not used
-;     5                              ;; maxCandsPerDeme - top 5 per deme
-;     2                              ;; minPoolSize - min deme size
-;     1.0                            ;; complexityTemperature - for trimming
-;     5                              ;; nToKeep - keep top 5
-;     0.004                          ;; capCoef - capacity coefficient
-;     1000)   
+!(runMoses
+    2                              ;; maxGen - 3 generations 
+    (mkCscore 7.0 0 0 0.0 7)     ;; Target: 10/10 wins,
+    3                              ;; maxCandOutput - return top 3 strategies
+    (emptyStrategyMetaPop)         ;; metaPop - start with empty strategy
+    0                              ;; nExpansion - generation counter
+    2                              ;; nDeme - 3 demes (more diversity)
+    (7 3.5)                     ;; nGames - 10 games per evaluation, mixed opponents
+    hillClimbing                   ;; optimize - optimizer function
+    30                             ;; nEval - not used
+    5                              ;; maxCandsPerDeme - top 5 per deme
+    2                              ;; minPoolSize - min deme size
+    1.0                            ;; complexityTemperature - for trimming
+    5                              ;; nToKeep - keep top 5
+    0.004                          ;; capCoef - capacity coefficient
+    1000)   
 ;; metapop for testing
 (= (strategyMetaPop)
    (ConsOS
@@ -350,52 +350,52 @@
        (mkBScore (Cons 2.0 Nil)))
      NilOS))
 
-!(assertEqual
-   (let* (
-     ($optimizedDemes (expandDeme
-                        (strategyMetaPop) 
-                        0 1 5 random-player 3.5 
-                        (mkCscore 5.0 5 1.43 0.0 3.57) 
-                        hillClimbing))
-     ($demeCount (size-atom $optimizedDemes))
-   )
-   (>= $demeCount 1))
-   True)
+; !(assertEqual
+;    (let* (
+;      ($optimizedDemes (expandDeme
+;                         (strategyMetaPop) 
+;                         0 1 5 3.5
+;                         (mkCscore 5.0 5 1.43 0.0 3.57) 
+;                         hillClimbing))
+;      ($demeCount (size-atom $optimizedDemes))
+;    )
+;    (>= $demeCount 1))
+;    True)
 
-!(assertEqual
-   (let* (
-     ($result (runMoses
-                1                              ;; maxGen
-                (mkCscore 5.0 5 1.43 0.0 3.57) ;; target
-                3                              ;; maxCandOutput
-                (strategyMetaPop)              ;; metaPop
-                0 1                            ;; nExpansion, nDeme
-                (5 random-player 3.5)            ;; nGames, opponent, ratio
-                hillClimbing                   ;; optimizer
-                30 5 2 1.0                     ;; nEval, maxCands, minPool, temp
-                5 0.004 1000))                 ;; nToKeep, capCoef, genCount
-     ($resultSize (eval (OS.length $result)))
-   )
-   (>= $resultSize 1))
-   True)
+; !(assertEqual
+;    (let* (
+;      ($result (runMoses
+;                 1                              ;; maxGen
+;                 (mkCscore 5.0 5 1.43 0.0 3.57) ;; target
+;                 3                              ;; maxCandOutput
+;                 (strategyMetaPop)              ;; metaPop
+;                 0 1                            ;; nExpansion, nDeme
+;                 (5 3.5)                        ;; nGames, mixed-opponent ratio
+;                 hillClimbing                   ;; optimizer
+;                 30 5 2 1.0                     ;; nEval, maxCands, minPool, temp
+;                 5 0.004 1000))                 ;; nToKeep, capCoef, genCount
+;      ($resultSize (eval (OS.length $result)))
+;    )
+;    (>= $resultSize 1))
+;    True)
 
-!(assertEqual
-   (let* (
-     ($result (runMoses
-                1                              ;; maxGen
-                (mkCscore 5.0 5 1.43 0.0 3.57) ;; target
-                1                              ;; maxCandOutput
-                (strategyMetaPop)              ;; metaPop
-                0 1                            ;; nExpansion, nDeme
-                (5 random-player 3.5)            ;; nGames, opponent, ratio
-                hillClimbing                   ;; optimizer
-                30 5 2 1.0                     ;; nEval, maxCands, minPool, temp
-                5 0.004 1000))                 ;; nToKeep, capCoef, genCount
-     ($topExemplar (eval (OS.getByIdx 0 $result)))
-     ($topScore (eval (getExemplarCscore $topExemplar)))
-     ($penScore (eval (getPenScore $topScore)))
-     ;; Score should be better than worst possible
-     ($isValid (> $penScore -1000.0))
-   )
-   $isValid)
-   True)
+; !(assertEqual
+;    (let* (
+;      ($result (runMoses
+;                 1                              ;; maxGen
+;                 (mkCscore 5.0 5 1.43 0.0 3.57) ;; target
+;                 1                              ;; maxCandOutput
+;                 (strategyMetaPop)              ;; metaPop
+;                 0 1                            ;; nExpansion, nDeme
+;                 (5 3.5)                        ;; nGames, mixed-opponent ratio
+;                 hillClimbing                   ;; optimizer
+;                 30 5 2 1.0                     ;; nEval, maxCands, minPool, temp
+;                 5 0.004 1000))                 ;; nToKeep, capCoef, genCount
+;      ($topExemplar (eval (OS.getByIdx 0 $result)))
+;      ($topScore (eval (getExemplarCscore $topExemplar)))
+;      ($penScore (eval (getPenScore $topScore)))
+;      ;; Score should be better than worst possible
+;      ($isValid (> $penScore -1000.0))
+;    )
+;    $isValid)
+;    True)

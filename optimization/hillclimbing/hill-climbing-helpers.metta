@@ -188,6 +188,21 @@
         (let*
           (
             ($disc (getDisk $POASet))
+            (($nGames $complexityRatio) $FsScorer)
+            ($targetPenScore (eval (getPenScore $tTableBscorer)))
+          )
+          (hillClimbing (3 3 $targetPenScore)
+                        (False False False $centerInst (worstCscore) (* -1 (pow-math 10 308)) 0 0 1)
+                        $POASet
+                        ($disc $nGames MixedOpponent $complexityRatio)
+                        $centerInst
+                        ()
+                        estimateNeighborhood crossover
+                        sampleNewInstances transform)))
+      ((mkParams applyStrategyBasedScore)
+        (let*
+          (
+            ($disc (getDisk $POASet))
             (($nGames $opponentPolicy $complexityRatio) $FsScorer)
             ($targetPenScore (eval (getPenScore $tTableBscorer)))
           )
@@ -198,7 +213,7 @@
                         $centerInst
                         ()
                         estimateNeighborhood crossover
-                        sampleNewInstances transform))))))
+                        sampleNewInstances transform)))))) 
 
 (= (hillClimbing ($maxDist $minXoverNeighbors $bestPossibleScore) ;; Constant parameters
                  ($alreadyXover $lastChance $__ $prevCenter $bestSscore $bestScore $currentNInstances $d $i)
@@ -258,7 +273,9 @@
                                           (case $iTable
                                             (
                                               ((mkITable $rows $labels) (eval ($transformFunction $updatedInstSet $rep (mkITable $rows $labels) $rowOCoeff)))
-                                              ($ComplexityRatio (eval ($transformFunction $updatedInstSet $rep ($rowOCoeff $size) $ComplexityRatio)))
+                                              ($ComplexityRatio (if (== $size MixedOpponent)
+                                                                   (eval ($transformFunction $updatedInstSet $rep $rowOCoeff $ComplexityRatio))
+                                                                   (eval ($transformFunction $updatedInstSet $rep ($rowOCoeff $size) $ComplexityRatio))))
                                             ))))
 
         ($updatedDeme (if (or (== $rep ()) (== $id ())) 
