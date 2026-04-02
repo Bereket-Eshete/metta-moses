@@ -211,10 +211,9 @@
 
 !(assertEqual
    (let* (
-      ($result (transform
+      ((mkSInstSet $instList) (transform
          (mkSInstSet (Cons (mkSInst (mkPair (mkInst (Cons 1 (Cons 1 Nil))) -1.0e308)) Nil))
-         (StrategyRep) (1) 3.5))
-      ($instList (eval (getSInstSetItems $result)))
+         (StrategyRep) 1 3.5))
       ($resultLen (eval (List.length $instList)))
       ($firstSInst (eval (List.head $instList)))
       ($score (eval (getSInstScore $firstSInst)))
