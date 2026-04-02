@@ -32,14 +32,11 @@
 ;; Splits a game budget between random and minimax.
 ;; Pairs are distributed evenly; the odd leftover game goes to minimax.
 (= (split-opponent-games $n)
-    (split-opponent-games-helper $n 0 0))
-
-(= (split-opponent-games-helper 0 $random-games $minimax-games)
-    ($random-games $minimax-games))
-(= (split-opponent-games-helper 1 $random-games $minimax-games)
-    ($random-games (+ $minimax-games 1)))
-(= (split-opponent-games-helper $n $random-games $minimax-games)
-    (split-opponent-games-helper (- $n 2) (+ $random-games 1) (+ $minimax-games 1)))
+    (let* (
+        ($random-games (py-call (math.floor (/ $n 2))))
+        ($minimax-games (- $n $random-games))
+    )
+    ($random-games $minimax-games)))
 
 ;; Default mixed-opponent evaluation used by strategy evolution.
 (= (evaluate-strategy $n $player-mark $player-policy)

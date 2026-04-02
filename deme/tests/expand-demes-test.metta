@@ -372,12 +372,12 @@
 ;; by uncomment this test and also adjust the parameter settings we can check the full evolution process of runMosesStrategy, and see how the strategy evolves from empty strategy to better strategy.
 ; !(runMoses
 ;     2                              ;; maxGen - 3 generations 
-;     (mkCscore 10.0 0 0 0.0 10)     ;; Target: 10/10 wins,
+;     (mkCscore 10.0 0 0 0.0 10.0)     ;; Target: 10/10 wins,
 ;     3                              ;; maxCandOutput - return top 3 strategies
 ;     (emptyStrategyMetaPop)         ;; metaPop - start with empty strategy
 ;     0                              ;; nExpansion - generation counter
 ;     2                              ;; nDeme - 3 demes (more diversity)
-;     (10 random-player 3.5)       ;; nGames - 10 games per evaluation
+;     (10 3.5)       ;; nGames - 10 games per evaluation
 ;     hillClimbing                   ;; optimize - optimizer function
 ;     30                             ;; nEval - not used
 ;     5                              ;; maxCandsPerDeme - top 5 per deme
@@ -402,7 +402,9 @@
    (let* (
      ($optimizedDemes (expandDeme
                         (strategyMetaPop) 
-                        0 1 5 random-player 3.5 
+                        0 1
+                        5
+                        3.5
                         (mkCscore 5.0 5 1.43 0.0 3.57) 
                         hillClimbing))
      ($demeCount (size-atom $optimizedDemes))
@@ -418,7 +420,7 @@
                 3                              ;; maxCandOutput
                 (strategyMetaPop)              ;; metaPop
                 0 1                            ;; nExpansion, nDeme
-                (5 random-player 3.5)            ;; nGames, opponent, ratio
+                (5 3.5)                        ;; (nGames complexityRatio) - mixed-opponent format
                 hillClimbing                   ;; optimizer
                 30 5 2 1.0                     ;; nEval, maxCands, minPool, temp
                 5 0.004 1000))                 ;; nToKeep, capCoef, genCount
@@ -435,7 +437,7 @@
                 1                              ;; maxCandOutput
                 (strategyMetaPop)              ;; metaPop
                 0 1                            ;; nExpansion, nDeme
-                (5 random-player 3.5)            ;; nGames, opponent, ratio
+                (5 3.5)                        ;; (nGames complexityRatio) - mixed-opponent format
                 hillClimbing                   ;; optimizer
                 30 5 2 1.0                     ;; nEval, maxCands, minPool, temp
                 5 0.004 1000))                 ;; nToKeep, capCoef, genCount
