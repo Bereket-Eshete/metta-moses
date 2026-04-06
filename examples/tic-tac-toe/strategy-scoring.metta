@@ -24,11 +24,6 @@
 (= (evaluate-strategy $n $player-mark $player-policy $opponent-policy)
     (evaluate-strategy-against $n $player-mark $player-policy $opponent-policy))
 
-;; Appends two score lists while preserving order.
-(= (append-score-lists Nil $right) $right)
-(= (append-score-lists (Cons $left-head $left-tail) $right)
-    (Cons $left-head (append-score-lists $left-tail $right)))
-
 ;; Splits a game budget between random and minimax.
 ;; Pairs are distributed evenly; the odd leftover game goes to minimax.
 (= (split-opponent-games $n)
