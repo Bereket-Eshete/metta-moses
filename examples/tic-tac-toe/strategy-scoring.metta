@@ -43,7 +43,7 @@
     (let* ((($random-games $minimax-games) (split-opponent-games $n))
            ($random-results (evaluate-strategy-against $random-games $player-mark $player-policy random-player))
            ($minimax-results (evaluate-strategy-against $minimax-games $player-mark $player-policy minimax-player)))
-        (append-score-lists $random-results $minimax-results)))
+        (List.concat $random-results $minimax-results)))
 
 ;; Backward-compatible single-opponent scoring.
 (= (score-strategy $n $player-policy $opponent-policy)
