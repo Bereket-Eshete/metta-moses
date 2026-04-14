@@ -1,6 +1,6 @@
 ;; getHcFtPop -- returns list of (score ft-set pairs) as (Cons ..)
 ;;            -- takes list of scored instances and an empty List Nil as accumulator
-(: getHcFtPop (-> (List (ScoredInstance Number)) Expression (List $a)))
+;(: getHcFtPop (-> (List (ScoredInstance Number)) Expression (List $a)))
 (= (getHcFtPop  Nil $acc) Nil)
 (= (getHcFtPop (Cons (mkSInst (mkPair (mkInst $list) $score)) $sInsts) $acc) 
   (chain (getHcFtPop $sInsts $acc) $new-acc
@@ -9,7 +9,7 @@
 
 ;; hcFtSetPop  -- runs the hill climbing feature selector using a center instance 
 ;;             -- returns tuple of (score ft-set) pairs
-(: hcFtSetPop (-> (ITable $a) Instance Number Number Number Number Bool Symbol Expression))      
+;(: hcFtSetPop (-> (ITable $a) Instance Number Number Number Number Bool Symbol Expression))      
 (= (hcFtSetPop $iTable $centerInst $scorerType)
   (let* (
          ;; ($_ (println! (debug inside hcFtSetPop)))
